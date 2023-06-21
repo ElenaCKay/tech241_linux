@@ -1,7 +1,13 @@
 # Linux
 
 To run linux you have to start the virtual machine.
-Ubuntu is like a flavour of Linux. Git Bash is like an emulation / translator for windows so it understands linux commands. It is running a version of GNU. 
+Ubuntu is like a flavour of Linux. 
+
+## What is Git Bash?
+
+Git Bash is like an emulation / translator for windows so it understands linux commands. It is running a version of GNU. Bourne Again SHell (Bash). A shell is software that is an interface which can run commands. There are multiple shells. 
+ `cat /etc/shells`
+Shows all the shells.
 
 ![Show windows or linux img](windows_or_linux.png)
 
@@ -50,9 +56,34 @@ uname -a -> all of the information
 | `history` | Lists the command history.                                         |
 | `exit`    | Exits the current shell or terminal.                               |
 | `uname`   | Prints system information.                                         |
+| `nano`    | A text editor                                                      |
+| `head`    | Show the top lines of the file                                     |
+| `tail`    | Shows the bottom lines of the file                                 |
 
+History gives a list of all the commands you have used and they are numbered. They you can use the command !<number> and it will be the command.
 
+rm -r -> Removes directories and everything within them.
 
+## Navigate files and folders
+
+- one dot means current directory (cd .)
+- two dots means the parent directory (cd ..)
+- home directory (cd OR cd ~)
+- present working directory (pwd)
+- root folder starts with a slash /  (cd /)
+- your home directory is the user folder (adminuser)
+
+Not every user gets a folder in the home directory. The super user / root user has a folder in the root directory. 
+
+File and folder names **are** case sensitive.
+
+## Managing file ownership
+
+Mangaging file ownership is important as you need to keep track of who has the correct permissions to certain files and directories. To view file ownership the command is ls -la (l for long and a for all).
+
+The file or directory created by a user typically belongs to that user. The owner of a file or directory is determined by the user who creates it. The group ownership of the file or directory is usually set to the primary group of the user. This can vary depending on the system's configuration, such as whether it uses user private groups or assigns a different group ownership.
+
+The permissions of a new file / directory is set by the unmask permissions? The default execute (x) permission is excluded for the owner when creating a file due to security reasons. Users can still grant the execute permission with the `chomd` command. 
 
 ## File permissions
 
@@ -82,6 +113,7 @@ Example:
 - The owner has read and write permissions
 - The group and others only have read permissions
 - This code would be 644
+- This is a file as it doesnt start with a d
   
 ### chmod command
 
@@ -96,3 +128,4 @@ Examples:
 - $ chmod o-w file_name
 - $ chmod u=rwx,g=rx,o= file_name
 - $ chmod 774 file_name
+
