@@ -44,21 +44,18 @@ uname -a -> all of the information
 | `chmod`   | Changes permissions of files and directories.                      |
 | `chown`   | Changes the owner of files and directories.                        |
 | `chgrp`   | Changes the group ownership of files and directories.              |
-| `man`     | Displays the manual pages for a command.                           |
 | `ssh`     | Connects to a remote server using the Secure Shell (SSH) protocol. |
-| `wget`    | Downloads files from the web using the command line.               |
-| `tar`     | Archives files into a tarball or extracts files from a tarball.    |
-| `df`      | Displays disk space usage of file systems.                         |
-| `top`     | Displays real-time system resource usage.                          |
 | `ps`      | Lists currently running processes.                                 |
-| `kill`    | Sends signals to terminate processes.                              |
 | `sudo`    | Executes a command with superuser (administrative) privileges.     |
 | `history` | Lists the command history.                                         |
 | `exit`    | Exits the current shell or terminal.                               |
 | `uname`   | Prints system information.                                         |
 | `nano`    | A text editor                                                      |
-| `head`    | Show the top lines of the file                                     |
-| `tail`    | Shows the bottom lines of the file                                 |
+| `touch`   | Creates an empty file                                              |
+| `printenv`| Prints the enviroment variables                                    |
+| `echo`    | Prints a file or string                                            |
+| `export`  | Creates an enviroment variable                                     |
+| `source`  | Used to reload the .bashrc file                                    |
 
 History gives a list of all the commands you have used and they are numbered. They you can use the command !<number> and it will be the command.
 
@@ -129,3 +126,111 @@ Examples:
 - $ chmod u=rwx,g=rx,o= file_name
 - $ chmod 774 file_name
 
+Chown
+
+## Notes for 22/06/2023
+
+Pipe symbol | takes the output and gives it to another command
+grep searches for a thing like a key word.
+apt also apt-get use to install packages
+sudo command is like superuser / root user command
+
+### Important commands used today
+
+`cat chicken-joke.txt | grep chicken` Takes the chicken-joke text file and searches for the key word **chicken** and it gives you all the lines with chicken on it.
+
+`sudo apt install tree`
+installed library called tree which shows files in a nicer way
+
+`sudo apt update -y`
+update all sources so it can find the packages -y means say yes to everything
+
+Root `cd /` it is like the base level of the folders
+
+`cp chicken-joke.txt bad-joke.txt` Copy the chicken joke and give the copy the name bad-joke
+
+`mv bad-joke.txt ~` Move the bad-joke file to the home directory
+
+`rm -r` Remove everything within the folder **recursive**
+
+## Scripting
+
+Provision ngenx
+
+`touch provision.sh` - create empty file
+`nano provision.sh` - edit file
+
+#! is the way to tell linux this is the path to take. We want Bash.
+
+So inside the file type:
+
+`#!/bin/bash`
+
+Two git bashes open - one to manually test and one to add to the script.
+
+    #!/bin/bash
+
+    # update
+    sudo apt update -y
+
+    # upgrade
+    sudo apt upgrade -y
+
+    # install nginx
+    sudo apt install nginx -y
+
+    sudo systemctl status nginx
+
+    # restart nginx
+    sudo systemctl restart nginx
+    # enable nginx - make sure that when the virtual machine restarts nginx will automatically start
+
+    sudo systemctl enable nginx
+
+## Environment variables
+
+- value stored in memory 
+- accessible by other tools Linux
+
+`printenv` shows all the environment variables. They are capitilised. 
+`printenv USER`
+
+### Make a variable
+`MYNAME=elena`
+`echo $MYNAME`
+
+### Make an environment variable and .bashrc
+`export MYNAME=elena`
+`printenv MYNAME`
+
+To have an enviroment variable that will stay when you log out and back in you need a file called `.bashrc`. It needs to be edited. 
+
+`nano .bashrc` -> edit the file
+
+Go to the bottom of the file and add the variable
+
+`export CATSNAME=Iggy`
+
+Go out of the file and use the command
+
+`source .bashrc` -> this will reload the file and the new enviroment variable will be present
+
+### Remove an environment variable
+`unset MYNAME`
+
+## Processes
+
+2 types:
+
+1. System proceses - ps aux
+2. User Processes - ps
+
+`ps` shows user processes
+
+If your CPU has one core it can handle one process at a time. If it is multicore it can run more than one process at a time. The operating system (OS) has to prioritise what needs to run first.
+
+PID is process ID - Every process has one.
+The parent process starts the child process.
+- TTY is the terminal if there is a ? then it is a system proccess.
+
+`ps aux` - Shows all processes in detail.
